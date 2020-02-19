@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
+    static final int SECOND_ACTIVITY_REQUEST_CODE = 1;
+
     // GUI control
     private TextView tvResult;
 
@@ -22,7 +24,8 @@ public class MainActivity extends AppCompatActivity {
 
     public void fetchInfo(View view) {
         Intent intent = new Intent(MainActivity.this, SecondActivity.class);
-        startActivityForResult(intent, 1);// Activity is started with requestCode 1
+        // To receive a result, call startActivityForResult() (instead of startActivity())
+        startActivityForResult(intent, SECOND_ACTIVITY_REQUEST_CODE);// Activity is started with requestCode 1
     }
 
     // Callback method to get the message from the other Activity
@@ -31,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         // Check which request we are responding to and if the result is OK
-        if (requestCode == 1 && resultCode == RESULT_OK) {
+        if (requestCode == SECOND_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
             String selection = data.getStringExtra("SELECTION");
             if (selection.equals("Swiss Lottery"))
                 tvResult.setText("Mode: Choose 6 numbers and 1 lucky number per tip\n" +

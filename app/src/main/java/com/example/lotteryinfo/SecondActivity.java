@@ -29,6 +29,7 @@ public class SecondActivity extends AppCompatActivity {
         // Get reference to the RadioButton
         rbLottery = findViewById(selectedId);
         intent.putExtra("SELECTION", rbLottery.getText());
+        // The setResult method takes an int result value and an Intent that is passed back to the calling Activity
         setResult(RESULT_OK, intent);
         finish();   // Finishing the activity
     }
